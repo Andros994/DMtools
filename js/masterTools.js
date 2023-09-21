@@ -1,4 +1,4 @@
-var nome, pf, alignment, inziativa, init;
+var nome, pf, alignment, inziativa, init, inputDadi;
 
 var figth_music = [
     {
@@ -114,6 +114,17 @@ $(document).ready(function(){
             $('#cardsContainer').append(el);
         })
     })
+
+    $(document).on('click', '#closeModalDadi', function(){
+        $('#risultatoDadi').empty();
+        $('#modaleDadi').hide();
+    })
+
+    $(document).on("click", "#tiraDadi", function(){
+        inputDadi = $('#inputDadi').val();
+        calcolaDadi(inputDadi);
+        $('#modaleDadi').show();
+    })
 })
 
 function removeDuplicates(arr) {
@@ -174,4 +185,26 @@ function popolaSelect(){
         `
         $('#selectEsplorazione').append(option);
     });
+}
+
+function calcolaDadi(input){
+    // var arrayResult = [];
+    arrayDadi = input.split(',');
+    console.log(arrayDadi);
+    arrayDadi.forEach(el => {
+        var arrayResult = [];
+        var numeroDadi = el.split('d')[0];
+        var tipoDado = el.split('d')[1];
+        for (i=0; i<parseInt(numeroDadi); i++){
+            var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
+            arrayResult.push(risultatoTiro);
+        }
+        var outputHtml = `
+        <div class="d-flex">
+            <span>${el} -> </span>
+            <span style="margin-left: 10px;">${arrayResult}</span>
+        </div>
+        `
+        $('#risultatoDadi').append(outputHtml);
+    })
 }
