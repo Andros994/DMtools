@@ -1,0 +1,57 @@
+.squareCard{
+    text-align: center;
+    /* border: solid; */
+    /* border-color: grey; */
+    border-radius: 20px;
+    width: max-content;
+    margin: 20px;
+    box-shadow: 2px 2px 20px #00000059;
+}
+.noBorder{
+    -webkit-appearance: none;
+    margin: 0;
+    border: 0;
+    -moz-appearance: textfield;
+    border: 1px solid gray;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+.enemy{
+    background-color: #ff8a8a;
+}
+.ally{
+    background-color: #a3e88f;
+}
+.npc{
+    background-color: #9ac1ff;
+}
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.parent{
+    position: relative;
+}
+.bottom{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+.shadow{
+    box-shadow: 2px 2px 10px grey;
+}
+.musicCard{
+    background-image: url(images/musicBackground.png);
+    background-size: contain;
+}
+.btnAdd{
+    width: 150px;
+}
+.textarea{
+    width: 100%;
+    border-radius: 20px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    resize: none;
+}
