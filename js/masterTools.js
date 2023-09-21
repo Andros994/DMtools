@@ -190,21 +190,48 @@ function popolaSelect(){
 function calcolaDadi(input){
     // var arrayResult = [];
     arrayDadi = input.split(',');
-    console.log(arrayDadi);
-    arrayDadi.forEach(el => {
-        var arrayResult = [];
-        var numeroDadi = el.split('d')[0];
-        var tipoDado = el.split('d')[1];
-        for (i=0; i<parseInt(numeroDadi); i++){
-            var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
-            arrayResult.push(risultatoTiro);
-        }
-        var outputHtml = `
-        <div class="d-flex">
-            <span>${el} -> </span>
-            <span style="margin-left: 10px;">${arrayResult}</span>
-        </div>
-        `
-        $('#risultatoDadi').append(outputHtml);
-    })
+    var outputHtml;
+    if ($('#sommaRisultati').is(':checked')){
+        arrayDadi.forEach(el => {
+            var arrayResult = [];
+            var numeroDadi = el.split('d')[0];
+            var tipoDado = el.split('d')[1];
+            for (i=0; i<parseInt(numeroDadi); i++){
+                var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
+                arrayResult.push(risultatoTiro);
+            }
+            var somma = sum(arrayResult);
+            outputHtml = `
+            <div class="d-flex">
+                <span>${el} -> </span>
+                <span style="margin-left: 10px;">${arrayResult}</span>
+            </div>
+            <label>Somma: ${somma}</label>
+            <hr>
+            `
+            $('#risultatoDadi').append(outputHtml);
+        })
+    } else {
+        arrayDadi.forEach(el => {
+            var arrayResult = [];
+            var numeroDadi = el.split('d')[0];
+            var tipoDado = el.split('d')[1];
+            for (i=0; i<parseInt(numeroDadi); i++){
+                var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
+                arrayResult.push(risultatoTiro);
+            }
+            outputHtml = `
+            <div class="d-flex">
+                <span>${el} -> </span>
+                <span style="margin-left: 10px;">${arrayResult}</span>
+            </div>
+            <hr>
+            `
+            $('#risultatoDadi').append(outputHtml);
+        })
+    }
 }
+
+sum = function(arr) {
+    return arr.reduce((a, b) => a + b, 0);
+};

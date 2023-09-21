@@ -55,3 +55,6 @@
     scrollbar-width: none;  /* Firefox */
     resize: none;
 }
+.modal-content{
+    width: fit-content;
+}

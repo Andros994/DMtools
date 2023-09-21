@@ -21,11 +21,17 @@
     <div id="main" class="d-flex" style="background-color: rgb(36, 50, 75); padding-right: 5px;">
 
         <div class="col-lg-3 vh-100 text-white">
-            <!-- PLAYERS -->
-            <div id="palyersDiv" class="text-center" style="height: 85vh; overflow: auto;">
-                <div class="p-3">
-                    <h4>Music Players</h4>
+            <!-- TIRA DADI -->
+            <div class="card  p-2 m-2 mt-2 text-center mt-1" style="background-image: url(images/dices.jpg); background-size: cover; height: 120px; justify-content: center;">
+                <input type="text" class="input" style="border-radius: 20px;" id="inputDadi" placeholder="es. 1d20, 2d6">
+                <div class="p-2" style="text-align: start;">
+                    <input type="checkbox" id="sommaRisultati" name="sommaRisultati">
+                    <label for="sommaRisultati">Somma risultati</label>
                 </div>
+                <button type="button" id="tiraDadi" class="btn btn-primary mt-2"><i class="fa-solid fa-dice-d20"></i> Tira dadi</button>
+            </div>
+            <!-- PLAYERS -->
+            <div id="palyersDiv" class="text-center">
                 <div id="palyers" class="col-lg-12 d-flex" style="flex-direction: column;">
                     <div class="card p-3 m-1 shadow" style="background-image: url(images/musicBackground.png);
                     background-size: contain;">
@@ -54,12 +60,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- TIRA DADI -->
-            <div class="text-center mt-1">
-                <p>Es. 1d20, 2d6 etc..</p>
-                <input type="text" class="input" style="border-radius: 20px;" id="inputDadi">
-                <button type="button" id="tiraDadi" class="btn btn-primary"><i class="fa-solid fa-dice-d20"></i> Tira dadi</button>
             </div>
         </div>
 
@@ -106,7 +106,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width: 600px;">
               <div class="row">
                 <div class="col-4">
                     <p>Nome</p>
