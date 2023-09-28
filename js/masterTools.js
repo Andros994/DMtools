@@ -98,7 +98,7 @@ $(document).ready(function(){
         var listaCards = Object.values($(document).find('.card')).slice(0,-2);
         inputIniziativa.forEach(el => {
             if(el.className && el.className != ""){
-                listaIniziative.push(el.value);
+                listaIniziative.push(el.textContent);
             }
         })
         listaIniziative.sort(function(a, b){return b - a});
@@ -115,6 +115,10 @@ $(document).ready(function(){
         })
     })
 
+    $(document).on("click", "#clearAll", function(){
+        $('#cardsContainer').empty();
+    })
+
     $(document).on('click', '#closeModalDadi', function(){
         $('#risultatoDadi').empty();
         $('#modaleDadi').hide();
@@ -122,8 +126,14 @@ $(document).ready(function(){
 
     $(document).on("click", "#tiraDadi", function(){
         inputDadi = $('#inputDadi').val();
-        calcolaDadi(inputDadi);
-        $('#modaleDadi').show();
+        if (inputDadi != ""){
+            calcolaDadi(inputDadi);
+            $('#modaleDadi').show();
+        }
+    })
+
+    $(document).on('click', '#ClearDices', function(){
+        $('#risultatoDadi').empty();
     })
 })
 
@@ -155,16 +165,17 @@ function creaCard(){
                     <button type="button" class="btn btn-danger deleteCard"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="col-12">
-                <p>Iniziativa</p>
-                <input type="number" class="form-control inputIniziativa" refName="${nome}" value="${init}"></input>
+            <div class="col-12 d-flex">
+                <label class="col-6">Iniziative</label>
+                <label class="inputIniziativa col-6" refName="${nome}" value="${init}">${init}</label>
             </div>
             <div class="col-12 d-flex mt-2">
-                <input type="number" class="col-6 noBorder"></input>
-                <p class="col-6">/ ${pf} pf</p>
+                <label class="col-2">PF</label>
+                <input type="number" class="col-8 noBorder"></input>
+                <label class="col-2">/ ${pf} </label>
             </div>
             <div>
-                <textarea class="textarea" placeholder="Note"></textarea>
+                <textarea class="textarea p-2 mb-2" placeholder="Notes"></textarea>
             </div>
         </div>
     `
@@ -188,48 +199,56 @@ function popolaSelect(){
 }
 
 function calcolaDadi(input){
-    // var arrayResult = [];
     arrayDadi = input.split(',');
-    var outputHtml;
-    if ($('#sommaRisultati').is(':checked')){
-        arrayDadi.forEach(el => {
-            var arrayResult = [];
-            var numeroDadi = el.split('d')[0];
-            var tipoDado = el.split('d')[1];
-            for (i=0; i<parseInt(numeroDadi); i++){
-                var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
-                arrayResult.push(risultatoTiro);
-            }
-            var somma = sum(arrayResult);
-            outputHtml = `
-            <div class="d-flex">
-                <span>${el} -> </span>
-                <span style="margin-left: 10px;">${arrayResult}</span>
-            </div>
-            <label>Somma: ${somma}</label>
-            <hr>
-            `
-            $('#risultatoDadi').append(outputHtml);
-        })
-    } else {
-        arrayDadi.forEach(el => {
-            var arrayResult = [];
-            var numeroDadi = el.split('d')[0];
-            var tipoDado = el.split('d')[1];
-            for (i=0; i<parseInt(numeroDadi); i++){
-                var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
-                arrayResult.push(risultatoTiro);
-            }
-            outputHtml = `
-            <div class="d-flex">
-                <span>${el} -> </span>
-                <span style="margin-left: 10px;">${arrayResult}</span>
-            </div>
-            <hr>
-            `
-            $('#risultatoDadi').append(outputHtml);
-        })
-    }
+    var firstCol = "";
+    var secondCol = "<td></td>";
+    var thirdCol = "<td></td>";
+    arrayDadi.forEach(el => {
+        var arrayResult = [];
+        var numeroDadi = el.split('d')[0];
+        var tipoDado = el.split('d')[1];
+        for (i=0; i<parseInt(numeroDadi); i++){
+            var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
+            arrayResult.push(risultatoTiro);
+        }
+        var somma = sum(arrayResult);
+        firstCol = `<td>${el}</td>`;
+        if ($('#mostraRisultati').is(':checked')){
+            secondCol = `<td>Single results: ${arrayResult}</td>`;
+        }
+        if ($('#sommaRisultati').is(':checked')){
+            thirdCol = `<td>Total: ${somma}</td>`;
+        }
+        var outputHtml = '<tr style="border-bottom: 1px solid #ddd;">'+firstCol+secondCol+thirdCol+'</tr>';
+        // outputHtml = `
+        // <div class="d-flex">
+        //     <span>${el} -> </span>
+        //     <span style="margin-left: 10px;">${arrayResult}</span>
+        // </div>
+        // <label>Somma: ${somma}</label>
+        // <hr>
+        // `
+        $('#risultatoDadi').append(outputHtml);
+    })
+    // } else {
+        // arrayDadi.forEach(el => {
+        //     var arrayResult = [];
+        //     var numeroDadi = el.split('d')[0];
+        //     var tipoDado = el.split('d')[1];
+        //     for (i=0; i<parseInt(numeroDadi); i++){
+        //         var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
+        //         arrayResult.push(risultatoTiro);
+        //     }
+        //     outputHtml = `
+        //     <div class="d-flex">
+        //         <span>${el} -> </span>
+        //         <span style="margin-left: 10px;">${arrayResult}</span>
+        //     </div>
+        //     <hr>
+        //     `
+        //     $('#risultatoDadi').append(outputHtml);
+        // })
+    // }
 }
 
 sum = function(arr) {

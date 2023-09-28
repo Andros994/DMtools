@@ -8,7 +8,7 @@
     box-shadow: 2px 2px 20px #00000059;
 }
 .noBorder{
-    -webkit-appearance: none;
+    appearance: none;
     margin: 0;
     border: 0;
     -moz-appearance: textfield;
@@ -55,7 +55,87 @@
     scrollbar-width: none;  /* Firefox */
     resize: none;
 }
+
+.nav-link{
+    color: white;
+}
+
+#main{
+    /* background-color: rgb(46, 49, 73); */
+    background: rgb(46,47,49);
+    background: linear-gradient(45deg, rgba(46,47,49,1) 0%, rgba(76,89,105,1) 100%);  
+}
+
+input, textarea{
+    border-radius: 20px;
+    border: none;
+    padding: 2px;
+    text-align: center;
+}
+
 .modal-content{
+    background: linear-gradient(45deg, rgba(70,74,82,1) 0%, rgba(104,128,160,1) 100%);   
+    color: white;
+    border: none;
+    border-radius: 20px;
     width: fit-content;
     min-width: 600px;
 }
+
+hr{
+    color: white;
+}
+
+.musicCard{
+    text-align: center;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgb(96, 26, 26) 0%, rgb(13, 12, 84) 100%);
+    color: white;
+    margin: 0.2rem;
+}
+
+#players{
+    display: flex;
+}
+
+.iframeYT{
+    width: 100%;
+    min-height: 200px;
+}
+
+.diceCard {
+    padding: 10px;
+    margin: 1rem;
+    color: white;
+    background: rgb(99,119,151);
+    background: linear-gradient(90deg, rgb(38, 60, 97) 0%, rgb(67, 85, 113) 91%);
+    max-height: 95vh;
+    overflow: auto;
+}
+
+.card-thumbnail{
+    position: relative;
+    overflow: hidden;  
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center; /* vertical center */
+    
+    width: 100%; /* Thumbnail dimensions. */
+    height: 100%; /*** Change the height to make the image smaller ***/
+    /* background-color: rgba(0,0,0,.2);  /* for debugging */
+    
+  }
+  /* Sets the image dimensions */
+  .card-thumbnail > img{ /* Tip: use 1:1 ratio images */
+    height: 100%; /* or width when img.width > img.height */ 
+  } 
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .musicCard{
+        width: 100%;
+    }
+    #players{
+        display: block;
+    }
+  }

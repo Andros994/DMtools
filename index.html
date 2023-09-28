@@ -18,60 +18,27 @@
 </head>
 
 <body>
-    <div id="main" class="d-flex" style="background-color: rgb(36, 50, 75); padding-right: 5px;">
-
-        <div class="col-lg-3 vh-100 text-white">
-            <!-- TIRA DADI -->
-            <div class="card  p-2 m-2 mt-2 text-center mt-1" style="background-image: url(images/dices.jpg); background-size: cover; height: 120px; justify-content: center;">
-                <input type="text" class="input" style="border-radius: 20px;" id="inputDadi" placeholder="es. 1d20, 2d6">
-                <div class="p-2" style="text-align: start;">
-                    <input type="checkbox" id="sommaRisultati" name="sommaRisultati">
-                    <label for="sommaRisultati">Somma risultati</label>
-                </div>
-                <button type="button" id="tiraDadi" class="btn btn-primary mt-2"><i class="fa-solid fa-dice-d20"></i> Tira dadi</button>
+    <div class="d-flex align-items-start" id="main">
+        <div class="nav flex-column nav-pills p-3 bg-blue col-2" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height: 100vh;">
+            <div style="height: 90vh;">
+                <h3 for="" class="text-white text-center">DM Tools <i class="fa-solid fa-dice-d20"></i></h3>
+                <hr>
+                <button class="nav-link active" id="iniziativa-tab" data-bs-toggle="pill" data-bs-target="#divIniziativa" type="button" role="tab" aria-controls="divIniziativa" aria-selected="true"><i class="fa-solid fa-list"></i> Initiative Tracker</button>
+                <button class="nav-link" id="music-tab" data-bs-toggle="pill" data-bs-target="#divMusica" type="button" role="tab" aria-controls="divMusica" aria-selected="false"><i class="fa-solid fa-music"></i> Music</button>
+                <button class="nav-link" id="dice-tab" data-bs-toggle="pill" data-bs-target="#divDice" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</button>
             </div>
-            <!-- PLAYERS -->
-            <div id="palyersDiv" class="text-center">
-                <div id="palyers" class="col-lg-12 d-flex" style="flex-direction: column;">
-                    <div class="card p-3 m-1 shadow" style="background-image: url(images/musicBackground.png);
-                    background-size: contain;">
-                        <div class="card-title">
-                            <h5>Combattimento</h5>
-                            <hr>
-                        </div>
-                        <div class="card-body">
-                            <iframe id="iframeCombattimento" src="https://www.youtube.com/embed/n2fIGOvXVa4"></iframe>  
-                            <select id="selectCombattimento" class="col-12">
-                                <option value="" selected disabled>Seleziona una traccia</option>
-                            </select>      
-                        </div>
-                    </div>
-                    <div class="card p-3 m-1 shadow" style="background-image: url(images/musicBackground.png);
-                    background-size: contain;">
-                        <div class="card-title">
-                            <h5>Esplorazione</h5>
-                            <hr>
-                        </div>
-                        <div class="card-body">
-                            <iframe id="iframeEsplorazione" src="https://www.youtube.com/embed/0W7dtwOFpGU"></iframe>
-                            <select id="selectEsplorazione" class="col-12">
-                                <option value="" selected disabled>Seleziona una traccia</option>
-                            </select>       
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <label for="" class="text-white" style="font-size: small;">Created by Andrea Sandri</label>
             </div>
         </div>
-
-        <div class="d-flex col-lg-9" style="flex-direction: column;">
-            <!-- ENEMY MANAGER -->
-            <div >
-                <div id="enemyManager">
+        <div class="tab-content col-10 shadow" id="tabContent">
+            <div class="tab-pane fade show active" id="divIniziativa" role="tabpanel" aria-labelledby="iniziativa-tab">     <!-- Tab Iniziativa -->
+                <div id="enemyManager" style="height: 100vh;">
                     <div id="headBar">
                         <div style="display: flex;justify-content: space-evenly;">
                             <button id="addEnemy" class="btnAdd btn btn-danger m-3" type="button">
                                 <i class="fa-solid fa-plus"></i>
-                                <p>Nemico</p>
+                                <p>Enemy</p>
                             </button>
                             <button id="addAlly" class="btnAdd btn btn-success m-3" type="button">
                                 <i class="fa-solid fa-plus"></i>
@@ -83,17 +50,83 @@
                             </button>
                         </div>
                         <div class="p-3">
-                            <button id="sortIniziativa" class="btn btn-primary">Ordina per iniziativa</button>
+                            <button id="sortIniziativa" class="btn btn-primary">Sort by initiative</button>
+                            <button id="clearAll" class="btn btn-primary" style="margin-left: 5px;">Clear all</button>
                         </div>
                     </div>
-                
+            
                     <hr>
-                
+            
                     <div class="row col-sm-12" id="cardsContainer" style="justify-content: center;"></div>
                 </div>
             </div>
-        </div>
+            <div class="tab-pane fade" id="divMusica" role="tabpanel" aria-labelledby="music-tab">                          <!-- Tab Musica -->
+                <div id="palyersDiv" style="height: 100vh;">
+                    <div id="players" class="col-12 p-3">
+                        <div class="card musicCard col-6 p-3 shadow">
+                            <div class="card-title">
+                                <h5>Combattimento</h5>
+                                <hr>
+                            </div>
+                            <div class="card-body">
+                                <iframe id="iframeCombattimento" class="iframeYT" src="https://www.youtube.com/embed/n2fIGOvXVa4"></iframe>  
+                                <select id="selectCombattimento" class="col-12">
+                                    <option value="" selected disabled>Seleziona una traccia</option>
+                                </select>      
+                            </div>
+                        </div>
+                        <div class="card musicCard col-6 p-3 shadow">
+                            <div class="card-title">
+                                <h5>Esplorazione</h5>
+                                <hr>
+                            </div>
+                            <div class="card-body">
+                                <iframe id="iframeEsplorazione" class="iframeYT" src="https://www.youtube.com/embed/0W7dtwOFpGU"></iframe>
+                                <select id="selectEsplorazione" class="col-12">
+                                    <option value="" selected disabled>Seleziona una traccia</option>
+                                </select>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="divDice" role="tabpanel" aria-labelledby="dice-tab">                             <!-- Tab Dadi -->
+                <div id="diceContainer" style="height: 100vh;">
+                    <div class="card diceCard">
+                        <div class="d-flex">
+                            <div class="col-11 text-center">
+                                <div class="form-group">
+                                    <input type="text" class="input" style="border-radius: 20px;" id="inputDadi" placeholder="es. 1d20, 2d6">
+                                    <button type="button" id="tiraDadi" class="btn btn-primary ml-2"><i class="fa-solid fa-dice-d20"></i> Roll</button>
+                                    <button type="button" id="ClearDices" class="btn btn-primary ml-2">Clear</button>
+                                </div>
+                                <div class="p-2 d-flex" style="text-align: start; flex-direction: column;">
+                                    <div>
+                                        <input type="checkbox" id="mostraRisultati" checked>
+                                        <label for="sommaRisultati">Show single results</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="sommaRisultati">
+                                        <label for="sommaRisultati">Sum of the results</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <img src="/DMtools/images/d20_transparent.png" alt="" style="width: 100%;">
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <div class="m-0 p-0">
+                            <table id="risultatoDadi" class="col-12 text-center">
+                            </table>
+                        </div>
+                    </div>
 
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modale aggiunta nemici -->
@@ -101,7 +134,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Aggiungi Personaggio</h5>
+              <h5 class="modal-title">Add character</h5>
               <button type="button" id="closeModal" class="btn btn-light" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -109,7 +142,7 @@
             <div class="modal-body" style="width: 600px;">
               <div class="row">
                 <div class="col-4">
-                    <p>Nome</p>
+                    <p>Name</p>
                 </div>
                 <div class="col-5">
                     <input type="text" id="inputName">
@@ -120,7 +153,7 @@
               </div>
               <div class="row">
                 <div class="col-4">
-                    <p>Iniziativa</p>
+                    <p>Initiative</p>
                 </div>
                 <div class="col-6">
                     <input type="number" name="iniziativa" id="iniziativa">
@@ -136,29 +169,29 @@
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvaCard">Salva</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvaCard">Save</button>
             </div>
           </div>
         </div>
     </div>
 
     <!-- Modale tiro dadi -->
-    <div id="modaleDadi" class="modal" role="dialog">
+    <!-- <div id="modaleDadi" class="modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Risultati</h5>
-              <button type="button" id="closeModalDadi" class="btn btn-light" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Results</h5>
+                    <button type="button" id="closeModalDadi" class="btn btn-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="risultatoDadi" class="col-12 text-center">
+                    </table>
+                </div>
             </div>
-            <div class="modal-body">
-              <div class="row" id="risultatoDadi">
-              </div>
-            </div>
-          </div>
         </div>
-    </div>
+    </div> -->
 
     <script src="js/masterTools.js"></script>
     
