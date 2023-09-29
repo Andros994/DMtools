@@ -1,39 +1,20 @@
 var nome, pf, alignment, inziativa, init, inputDadi;
 
-var figth_music = [
-    {
-        "title": "Star Wars 1",
-        "src": "https://www.youtube.com/embed/n2fIGOvXVa4"
-    },
-    {
-        "title": "Star Wars 2",
-        "src": "https://www.youtube.com/embed/ykfWGc5MRFo"
-    },
-    {
-        "title": "Fantasy 1",
-        "src": "https://www.youtube.com/embed/pGw2ztHACxA"
-    },
-    {
-        "title": "Fantasy 2",
-        "src": "https://www.youtube.com/embed/w0sUw735gRw"
-    }
-]
-
-var exploration_music = [
-    {
-        "title": "Star Wars 1",
-        "src": "https://www.youtube.com/embed/0W7dtwOFpGU"
-    },
-    {
-        "title": "Stellaris",
-        "src": "https://www.youtube.com/embed/eH3Hct6coWQ"
-    }
-]
 
 $(document).ready(function(){
-    $('#modalAdd').hide();
 
-    popolaSelect();
+    // leggo file di config dei lavori
+    $.getJSON('/DMtools/config/jobs.json', function(data) {
+        jobsConfig = data;
+    });
+
+    // leggo config per le tracce audio
+    $.getJSON('/DMtools/config/music.json', function(data) {
+        musicConfig = data;
+        popolaSelect(musicConfig);
+    });
+
+    $('#modalAdd').hide();
 
     $('#selectCombattimento, #selectEsplorazione').on('change', function(){
         if (this.id == "selectCombattimento"){
@@ -135,6 +116,53 @@ $(document).ready(function(){
     $(document).on('click', '#ClearDices', function(){
         $('#risultatoDadi').empty();
     })
+
+    $(document).on('click', '#randomNamesBtn', function(){
+        var names = [];
+        $.ajax({
+            type: "GET",
+            url: 'https://randommer.io/api/Name?nameType=fullname&quantity=10',
+            headers: {"X-Api-Key": "9e63af1a0c8f4659934478690939fc20"},
+            success: function(data){
+                $('#randomNames').empty();
+                names = data
+                names.forEach(el => {
+                    var singleName = `
+                    <p>${el}</p>
+                    `;
+                    $('#randomNames').append(singleName);
+                })
+            },
+            error: function(error){
+                console.log(error)
+            }
+        });
+    })
+
+    $(document).on("click", "#randomNamesClear", function(){
+        $('#randomNames').empty();
+    })
+
+    $(document).on('click', '#randomJobsBtn', function(){
+        $('#randomJobs').empty();
+        var outputJobs = [];
+        for (n=0; n<=9; n++){
+            var singleJob = jobsConfig.jobs[Math.floor(Math.random()*jobsConfig.jobs.length)]
+            if (!outputJobs.includes(singleJob)){
+                outputJobs.push(singleJob);
+            } else {
+                n--;
+            }
+        }
+        outputJobs.forEach(element => {
+            var singleJob = `<p>${element}</p>`;
+            $('#randomJobs').append(singleJob);
+        });
+    })
+
+    $(document).on("click", "#randomJobsClear", function(){
+        $('#randomJobs').empty();
+    })
 })
 
 function removeDuplicates(arr) {
@@ -183,17 +211,13 @@ function creaCard(){
     $('#cardsContainer').append(card);
 }
 
-function popolaSelect(){
-    figth_music.forEach(element => {
-        var option = `
-        <option value="${element.src}">${element.title}</option>
-        `
+function popolaSelect(json){
+    json.fightMusic.forEach(element => {
+        var option = `<option value="${element.src}">${element.title}</option>`;
         $('#selectCombattimento').append(option);
     });
-    exploration_music.forEach(element => {
-        var option = `
-        <option value="${element.src}">${element.title}</option>
-        `
+    json.exploringMusic.forEach(element => {
+        var option = `<option value="${element.src}">${element.title}</option>`;
         $('#selectEsplorazione').append(option);
     });
 }
@@ -220,37 +244,18 @@ function calcolaDadi(input){
             thirdCol = `<td>Total: ${somma}</td>`;
         }
         var outputHtml = '<tr style="border-bottom: 1px solid #ddd;">'+firstCol+secondCol+thirdCol+'</tr>';
-        // outputHtml = `
-        // <div class="d-flex">
-        //     <span>${el} -> </span>
-        //     <span style="margin-left: 10px;">${arrayResult}</span>
-        // </div>
-        // <label>Somma: ${somma}</label>
-        // <hr>
-        // `
         $('#risultatoDadi').append(outputHtml);
     })
-    // } else {
-        // arrayDadi.forEach(el => {
-        //     var arrayResult = [];
-        //     var numeroDadi = el.split('d')[0];
-        //     var tipoDado = el.split('d')[1];
-        //     for (i=0; i<parseInt(numeroDadi); i++){
-        //         var risultatoTiro = Math.floor(Math.random() * parseInt(tipoDado) + 1);
-        //         arrayResult.push(risultatoTiro);
-        //     }
-        //     outputHtml = `
-        //     <div class="d-flex">
-        //         <span>${el} -> </span>
-        //         <span style="margin-left: 10px;">${arrayResult}</span>
-        //     </div>
-        //     <hr>
-        //     `
-        //     $('#risultatoDadi').append(outputHtml);
-        // })
-    // }
 }
 
 sum = function(arr) {
     return arr.reduce((a, b) => a + b, 0);
 };
+
+function readJsonConfig(){
+    return $.getJSON('/config/jobs.json').then(function(){
+        return {
+            
+        }
+    })
+}

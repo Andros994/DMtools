@@ -13,7 +13,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <title>Dnd Master Tools</title>
+    <title>DM Tools</title>
+    <link rel="icon" href="/DMtools/images/d20_transparent.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -28,6 +29,7 @@
                 <button class="nav-link" id="music-tab" data-bs-toggle="pill" data-bs-target="#divMusica" type="button" role="tab" aria-controls="divMusica" aria-selected="false"><i class="fa-solid fa-music"></i> Music</button>
                 <button class="nav-link" id="dice-tab" data-bs-toggle="pill" data-bs-target="#divDice" type="button" role="tab" aria-controls="divDice" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</button>
                 <button class="nav-link" id="notes-tab" data-bs-toggle="pill" data-bs-target="#divNotes" type="button" role="tab" aria-controls="divNotes" aria-selected="false"><i class="fa-solid fa-book"></i> Notes</button>
+                <button class="nav-link" id="random-tab" data-bs-toggle="pill" data-bs-target="#divRandom" type="button" role="tab" aria-controls="divRandom" aria-selected="false"><i class="fa-solid fa-shuffle"></i> Random items</button>
             </div>
             <div>
                 <label for="" class="text-white" style="font-size: small;">Created by Andrea Sandri</label>
@@ -40,6 +42,7 @@
               <a class="nav-item nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#divMusica" href="#divMusica" role="tab" aria-controls="divMusica" aria-selected="false"><i class="fa-solid fa-music"></i> Music</a>
               <a class="nav-item nav-link" id="dice-tab" data-bs-toggle="tab" data-bs-target="#divDice" href="#divDice" role="tab" aria-controls="divDice" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</a>
               <a class="nav-item nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#divNotes" href="#divNotes" role="tab" aria-controls="divNotes" aria-selected="false"><i class="fa-solid fa-book"></i> Notes</a>
+              <a class="nav-item nav-link" id="random-tab" data-bs-toggle="tab" data-bs-target="#divRandom" href="#divRandom" role="tab" aria-controls="divRandom" aria-selected="false"><i class="fa-solid fa-shuffle"></i> Random items</a>
             </div>
           </nav>
           <!-- Tab Content -->
@@ -144,7 +147,29 @@
             <!-- Tab Note -->
             <div id="divNotes" class="tab-pane fade" role="tabpanel" aria-labelledby="notes-tab">
                 <div id="" class="d-flex justify-content-center" style="height: 100vh;">
-                    <textarea id="notes" class="textareaNote"></textarea>
+                    <textarea id="notes" class="textareaNote" placeholder="What are you thinking about?"></textarea>
+                </div>
+            </div>
+            <!-- Tab Random -->
+            <div id="divRandom" class="tab-pane fade" role="tabpanel" aria-labelledby="random-tab">
+                <div id="randomCardContainer" style="height: 100vh;">
+                    <!-- Random Names -->
+                    <div class="card shadow card-random">
+                        <div class="card-header text-center randomCard-header">
+                            <button type="button" id="randomNamesBtn" class="btn btn-primary">Get 10 Names</button>
+                            <button type="button" id="randomNamesClear" class="btn btn-danger">Clear</button>
+                        </div>
+                        <div id="randomNames" class="card-body text-center">
+                        </div>
+                    </div>
+                    <div class="card shadow card-random">
+                        <div class="card-header text-center randomCard-header">
+                            <button type="button" id="randomJobsBtn" class="btn btn-primary">Get 10 Sci-fi jobs</button>
+                            <button type="button" id="randomJobsClear" class="btn btn-danger">Clear</button>
+                        </div>
+                        <div id="randomJobs" class="card-body text-center">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

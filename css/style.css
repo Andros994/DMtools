@@ -156,6 +156,24 @@ hr{
     align-items: start;
 }
 
+.card-random{
+    background: rgb(50,88,116);
+    background: linear-gradient(0deg, rgba(50,88,116,1) 0%, rgba(79,109,131,1) 100%); 
+    color: white;
+    margin: 1rem;
+    width: 30%;
+    height: fit-content;
+}
+
+#randomCardContainer{
+    display: flex;
+}
+
+.randomCard-header{
+    display: flex;
+    justify-content: space-between;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .musicCard{
@@ -176,5 +194,16 @@ hr{
     }
     .nav-link{
         width: auto;
+    }
+    .card-random{
+        background: rgb(50,88,116);
+        background: linear-gradient(0deg, rgba(50,88,116,1) 0%, rgba(79,109,131,1) 100%); 
+        color: white;
+        width: 100%;
+        margin: 1rem;
+        height: fit-content;
+    }
+    #randomCardContainer{
+        display: block;
     }
   }

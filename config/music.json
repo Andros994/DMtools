@@ -1,0 +1,30 @@
+{
+    "fightMusic": [
+        {
+            "title": "Star Wars 1",
+            "src": "https://www.youtube.com/embed/n2fIGOvXVa4"
+        },
+        {
+            "title": "Star Wars 2",
+            "src": "https://www.youtube.com/embed/ykfWGc5MRFo"
+        },
+        {
+            "title": "Fantasy 1",
+            "src": "https://www.youtube.com/embed/pGw2ztHACxA"
+        },
+        {
+            "title": "Fantasy 2",
+            "src": "https://www.youtube.com/embed/w0sUw735gRw"
+        }
+    ],
+    "exploringMusic": [
+        {
+            "title": "Star Wars 1",
+            "src": "https://www.youtube.com/embed/0W7dtwOFpGU"
+        },
+        {
+            "title": "Stellaris",
+            "src": "https://www.youtube.com/embed/eH3Hct6coWQ"
+        }
+    ]
+}
