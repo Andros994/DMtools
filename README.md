@@ -1,5 +1,4 @@
 # DMtools
-# The tools are optimized to work on desktop view and could have layout issues on mobile or tablet
 
 The software is composed by different tools that you can navigate on the sidebar on the left
 
