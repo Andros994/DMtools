@@ -1,6 +1,6 @@
 # DMtools
 
-The software is composed by different tools that you can navigate on the sidebar on the left
+The software is composed by different tools that you can navigate on the sidebar on the left (on PC or tablet) or on the top (on mobile).
 
 - Iniziative tracker: you can add different enemies, players and npc, creating cards for each one in which you can insert name (or generate a random one), max PF and initiative. You can then order all of them by initiative
   from the highest one.
