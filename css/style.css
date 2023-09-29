@@ -89,6 +89,10 @@ input, textarea{
     /* min-width: 600px; */
 }
 
+.nav-link{
+    width: 100%;
+}
+
 hr{
     color: white;
 }
@@ -169,5 +173,8 @@ hr{
     }
     #main {
         display: block;
+    }
+    .nav-link{
+        width: auto;
     }
   }
