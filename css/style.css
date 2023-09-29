@@ -17,13 +17,19 @@
     margin-bottom: 8px;
 }
 .enemy{
-    background-color: #ff8a8a;
+    color: white;
+    background: rgb(166,43,43);
+    background: radial-gradient(circle, rgba(166,43,43,1) 36%, rgba(0,0,0,1) 100%);  
 }
 .ally{
-    background-color: #a3e88f;
+    color: white;
+    background: rgb(76,146,44);
+    background: radial-gradient(circle, rgba(76,146,44,1) 36%, rgba(0,0,0,1) 100%); 
 }
 .npc{
-    background-color: #9ac1ff;
+    color: white;
+    background: rgb(44,103,146);
+    background: radial-gradient(circle, rgba(44,103,146,1) 36%, rgba(0,0,0,1) 100%); 
 }
 .cardHeader{
     display: flex;
@@ -74,12 +80,13 @@ input, textarea{
 }
 
 .modal-content{
-    background: linear-gradient(45deg, rgba(70,74,82,1) 0%, rgba(104,128,160,1) 100%);   
+    background: rgb(50,88,116);
+    background: linear-gradient(0deg, rgba(50,88,116,1) 0%, rgba(79,109,131,1) 100%);   
     color: white;
     border: none;
     border-radius: 20px;
-    width: fit-content;
-    min-width: 600px;
+    /* width: fit-content; */
+    /* min-width: 600px; */
 }
 
 hr{
@@ -88,10 +95,18 @@ hr{
 
 .musicCard{
     text-align: center;
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgb(96, 26, 26) 0%, rgb(13, 12, 84) 100%);
     color: white;
     margin: 0.2rem;
+}
+
+.fightCard{
+    background: rgb(133,28,28);
+    background: radial-gradient(circle, rgba(133,28,28,1) 30%, rgba(0,0,0,1) 100%); 
+}
+
+.explorationCard{
+    background: rgb(74,135,35);
+    background: radial-gradient(circle, rgba(74,135,35,1) 30%, rgba(0,0,0,1) 100%); 
 }
 
 #players{
@@ -107,28 +122,35 @@ hr{
     padding: 10px;
     margin: 1rem;
     color: white;
-    background: rgb(99,119,151);
-    background: linear-gradient(90deg, rgb(38, 60, 97) 0%, rgb(67, 85, 113) 91%);
+    background: rgb(50,88,116);
+    background: linear-gradient(0deg, rgba(50,88,116,1) 0%, rgba(79,109,131,1) 100%);
     max-height: 95vh;
     overflow: auto;
 }
 
-.card-thumbnail{
-    position: relative;
-    overflow: hidden;  
+.textareaNote{
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 95%;
+    height: 95%;
+    text-align: justify;
+    background: rgb(50,88,116);
+    background: linear-gradient(0deg, rgba(50,88,116,1) 0%, rgba(79,109,131,1) 100%); 
+    color: white;
+}
+  
+#navMobile {
+    display: none;
+}
+
+#navDesktop {
+    display: block;
+}
+
+#main {
     display: flex;
-    justify-content: center; /* horizontal center */
-    align-items: center; /* vertical center */
-    
-    width: 100%; /* Thumbnail dimensions. */
-    height: 100%; /*** Change the height to make the image smaller ***/
-    /* background-color: rgba(0,0,0,.2);  /* for debugging */
-    
-  }
-  /* Sets the image dimensions */
-  .card-thumbnail > img{ /* Tip: use 1:1 ratio images */
-    height: 100%; /* or width when img.width > img.height */ 
-  } 
+    align-items: start;
+}
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
@@ -136,6 +158,16 @@ hr{
         width: 100%;
     }
     #players{
+        display: block;
+    }
+    #navMobile{
+        display: block;
+        padding: 1rem;
+    }
+    #navDesktop {
+        display: none;
+    }
+    #main {
         display: block;
     }
   }

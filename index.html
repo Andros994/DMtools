@@ -18,21 +18,34 @@
 </head>
 
 <body>
-    <div class="d-flex align-items-start" id="main">
-        <div class="nav flex-column nav-pills p-3 bg-blue col-2" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height: 100vh;">
+    <div id="main">
+        <!-- Nav Desktop -->
+        <nav id="navDesktop" class="nav flex-column nav-pills p-3" role="tablist" aria-orientation="vertical" style="height: 100vh;">
             <div style="height: 90vh;">
                 <h3 for="" class="text-white text-center">DM Tools <i class="fa-solid fa-dice-d20"></i></h3>
                 <hr>
                 <button class="nav-link active" id="iniziativa-tab" data-bs-toggle="pill" data-bs-target="#divIniziativa" type="button" role="tab" aria-controls="divIniziativa" aria-selected="true"><i class="fa-solid fa-list"></i> Initiative Tracker</button>
                 <button class="nav-link" id="music-tab" data-bs-toggle="pill" data-bs-target="#divMusica" type="button" role="tab" aria-controls="divMusica" aria-selected="false"><i class="fa-solid fa-music"></i> Music</button>
-                <button class="nav-link" id="dice-tab" data-bs-toggle="pill" data-bs-target="#divDice" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</button>
+                <button class="nav-link" id="dice-tab" data-bs-toggle="pill" data-bs-target="#divDice" type="button" role="tab" aria-controls="divDice" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</button>
+                <button class="nav-link" id="notes-tab" data-bs-toggle="pill" data-bs-target="#divNotes" type="button" role="tab" aria-controls="divNotes" aria-selected="false"><i class="fa-solid fa-book"></i> Notes</button>
             </div>
             <div>
                 <label for="" class="text-white" style="font-size: small;">Created by Andrea Sandri</label>
             </div>
-        </div>
-        <div class="tab-content col-10 shadow" id="tabContent">
-            <div class="tab-pane fade show active" id="divIniziativa" role="tabpanel" aria-labelledby="iniziativa-tab">     <!-- Tab Iniziativa -->
+        </nav>
+        <!-- Nav Mobile -->
+        <nav id="navMobile">
+            <div class="nav nav-pills" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="iniziativa-tab" data-bs-toggle="tab" data-bs-target="#divIniziativa" href="#divIniziativa" role="tab" aria-controls="divIniziativa" aria-selected="true"><i class="fa-solid fa-list"></i> Initiative Tracker</a>
+              <a class="nav-item nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#divMusica" href="#divMusica" role="tab" aria-controls="divMusica" aria-selected="false"><i class="fa-solid fa-music"></i> Music</a>
+              <a class="nav-item nav-link" id="dice-tab" data-bs-toggle="tab" data-bs-target="#divDice" href="#divDice" role="tab" aria-controls="divDice" aria-selected="false"><i class="fa-solid fa-dice-d20"></i> Dice Roller</a>
+              <a class="nav-item nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#divNotes" href="#divNotes" role="tab" aria-controls="divNotes" aria-selected="false"><i class="fa-solid fa-book"></i> Notes</a>
+            </div>
+          </nav>
+          <!-- Tab Content -->
+        <div class="tab-content shadow" id="tabContent" style="width: 100%;">
+            <!-- Tab Iniziativa -->
+            <div class="tab-pane fade show active" id="divIniziativa" role="tabpanel" aria-labelledby="iniziativa-tab">
                 <div id="enemyManager" style="height: 100vh;">
                     <div id="headBar">
                         <div style="display: flex;justify-content: space-evenly;">
@@ -60,37 +73,39 @@
                     <div class="row col-sm-12" id="cardsContainer" style="justify-content: center;"></div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="divMusica" role="tabpanel" aria-labelledby="music-tab">                          <!-- Tab Musica -->
+            <!-- Tab Musica -->
+            <div class="tab-pane fade" id="divMusica" role="tabpanel" aria-labelledby="music-tab">                          
                 <div id="palyersDiv" style="height: 100vh;">
-                    <div id="players" class="col-12 p-3">
-                        <div class="card musicCard col-6 p-3 shadow">
+                    <div id="players" class="p-3">
+                        <div class="card musicCard fightCard col-6 p-3 shadow">
                             <div class="card-title">
-                                <h5>Combattimento</h5>
+                                <h5>Fighting Music</h5>
                                 <hr>
                             </div>
                             <div class="card-body">
                                 <iframe id="iframeCombattimento" class="iframeYT" src="https://www.youtube.com/embed/n2fIGOvXVa4"></iframe>  
                                 <select id="selectCombattimento" class="col-12">
-                                    <option value="" selected disabled>Seleziona una traccia</option>
+                                    <option value="" selected disabled>Selecet an option</option>
                                 </select>      
                             </div>
                         </div>
-                        <div class="card musicCard col-6 p-3 shadow">
+                        <div class="card musicCard explorationCard col-6 p-3 shadow">
                             <div class="card-title">
-                                <h5>Esplorazione</h5>
+                                <h5>Exploration</h5>
                                 <hr>
                             </div>
                             <div class="card-body">
                                 <iframe id="iframeEsplorazione" class="iframeYT" src="https://www.youtube.com/embed/0W7dtwOFpGU"></iframe>
                                 <select id="selectEsplorazione" class="col-12">
-                                    <option value="" selected disabled>Seleziona una traccia</option>
+                                    <option value="" selected disabled>Selecet an option</option>
                                 </select>       
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="divDice" role="tabpanel" aria-labelledby="dice-tab">                             <!-- Tab Dadi -->
+            <!-- Tab Dadi -->
+            <div class="tab-pane fade" id="divDice" role="tabpanel" aria-labelledby="dice-tab">                             
                 <div id="diceContainer" style="height: 100vh;">
                     <div class="card diceCard">
                         <div class="d-flex">
@@ -126,6 +141,12 @@
 
                 </div>
             </div>
+            <!-- Tab Note -->
+            <div id="divNotes" class="tab-pane fade" role="tabpanel" aria-labelledby="notes-tab">
+                <div id="" class="d-flex justify-content-center" style="height: 100vh;">
+                    <textarea id="notes" class="textareaNote"></textarea>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -139,33 +160,19 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body" style="width: 600px;">
-              <div class="row">
-                <div class="col-4">
-                    <p>Name</p>
-                </div>
-                <div class="col-5">
-                    <input type="text" id="inputName">
-                </div>
-                <div class="col-3 d-flex" style="justify-content: end;">
-                    <button id="randomName" class="btn btn-primary" title="Randomize"><i class="fa-solid fa-shuffle"></i></button>
-                </div>
+            <div class="modal-body text-center">
+              <div>
+                <p>Name</p>
+                <input type="text" id="inputName">
+                <button id="randomName" class="btn btn-primary" title="Randomize"><i class="fa-solid fa-shuffle"></i></button>
               </div>
-              <div class="row">
-                <div class="col-4">
-                    <p>Initiative</p>
-                </div>
-                <div class="col-6">
-                    <input type="number" name="iniziativa" id="iniziativa">
-                </div>
+              <div class="mt-2">
+                <p>Initiative</p>
+                <input type="number" name="iniziativa" id="iniziativa">
               </div>
-              <div class="row">
-                <div class="col-4">
-                    <p>PF</p>
-                </div>
-                <div class="col-6">
-                    <input type="number" id="pf">
-                </div>
+              <div class="mt-2">
+                <p>PF</p>
+                <input type="number" id="pf">
               </div>
             </div>
             <div class="modal-footer">
@@ -174,24 +181,6 @@
           </div>
         </div>
     </div>
-
-    <!-- Modale tiro dadi -->
-    <!-- <div id="modaleDadi" class="modal" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Results</h5>
-                    <button type="button" id="closeModalDadi" class="btn btn-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <table id="risultatoDadi" class="col-12 text-center">
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <script src="js/masterTools.js"></script>
     

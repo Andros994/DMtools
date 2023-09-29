@@ -171,7 +171,7 @@ function creaCard(){
             </div>
             <div class="col-12 d-flex mt-2">
                 <label class="col-2">PF</label>
-                <input type="number" class="col-8 noBorder"></input>
+                <input type="number" placeholder="Current PF" class="col-8 noBorder"></input>
                 <label class="col-2">/ ${pf} </label>
             </div>
             <div>
