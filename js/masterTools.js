@@ -11,7 +11,13 @@ $(document).ready(function(){
     // leggo config per le tracce audio
     $.getJSON('/DMtools/config/music.json', function(data) {
         musicConfig = data;
-        popolaSelect(musicConfig);
+        popolaSelectMusic(musicConfig);
+    });
+    
+    // leggo config per le armi di SW
+    $.getJSON('/DMtools/config/SWweapons.json', function(data) {
+        swWeapons = data;
+        popolaSelectSWweapons(swWeapons);
     });
 
     $('#modalAdd').hide();
@@ -163,6 +169,10 @@ $(document).ready(function(){
     $(document).on("click", "#randomJobsClear", function(){
         $('#randomJobs').empty();
     })
+
+    $(document).on('click', '#randomSWweaponClear', function(){
+        $('#randomSWweapon').empty();
+    })
 })
 
 function removeDuplicates(arr) {
@@ -211,7 +221,7 @@ function creaCard(){
     $('#cardsContainer').append(card);
 }
 
-function popolaSelect(json){
+function popolaSelectMusic(json){
     json.fightMusic.forEach(element => {
         var option = `<option value="${element.src}">${element.title}</option>`;
         $('#selectCombattimento').append(option);
@@ -258,4 +268,209 @@ function readJsonConfig(){
             
         }
     })
+}
+
+function popolaSelectSWweapons(json){
+    console.log(json);
+    json.equipmentType.forEach(el => {
+        var optionWeaponType = `<option value="${el}">${el}</option>`;
+        $('#SWweaponType').append(optionWeaponType);
+    })
+    json.rarity.forEach(el => {
+        var optionRarity = `<option value="${el.description}">${el.description}</option>`;
+        $('#SWweaponRarity').append(optionRarity);
+    })
+    $(document).on('change', '#SWweaponRarity', function(){
+        var selectedRarity = $('#SWweaponRarity').find(":selected").val();
+        if (selectedRarity != ""){
+            $('#SWweaponMods').empty()
+            json.rarity.forEach(el => {
+                if (el.description == selectedRarity){
+                    for (i=0; i<=el.slots; i++){
+                        var installedMods = `<option id="${i}">${i}</option>`
+                        $('#SWweaponMods').append(installedMods);
+                    }
+                }
+            })
+        }
+    })
+
+    $(document).on('click', '#randomSWweaponBtn', function(){
+        var weaponType = $('#SWweaponType').val();
+        var weaponRarity = $('#SWweaponRarity').val();
+        var installedMods = $('#SWweaponMods').val();
+        if (weaponType != null && weaponRarity != null && installedMods != null){
+            $('#randomSWweapon').empty();
+            // Focus Generator
+            if (weaponType == "Focus Generator"){
+                var obj = json.equipmentList[weaponType].weaponList[0];
+                var objAppend = `
+                <hr>
+                <div>
+                    <p>${obj.name}</p>
+                    <p>${obj.description}</p>
+                    <p>Cost: ${obj.cost}</p>
+                    <p>Weight: ${obj.weight}</p>
+                </div>`;
+            // WristPad
+            } else if (weaponType == "Wristpad"){
+                var obj = json.equipmentList[weaponType].weaponList[0];
+                var objAppend = `
+                <hr>
+                <div>
+                    <p>${obj.name}</p>
+                    <p>${obj.description}</p>
+                    <p>Cost: ${obj.cost}</p>
+                    <p>Weight: ${obj.weight}</p>
+                </div>`;
+            // Clothing
+            } else if (weaponType == "Clothing") {
+                var possibleChoices = json.equipmentList[weaponType].weaponList;
+                var randomClothes = random_item(possibleChoices);
+                var objAppend = `
+                <hr>
+                <div>
+                    <p>${randomClothes.name}</p>
+                    <p>${randomClothes.description}</p>
+                    <p>Cost: ${randomClothes.cost}</p>
+                    <p>Weight: ${randomClothes.weight}</p>
+                </div>`;
+            // Armor
+            } else if (weaponType == "Armor"){
+                var possibleChoices = json.equipmentList[weaponType].weaponList;
+                var randomArmor = random_item(possibleChoices);
+                var objAppend = `
+                <hr>
+                <div>
+                    <p>${randomArmor.Name}</p>
+                    <p>Type: ${randomArmor.Type}</p>
+                    <p>AC: ${randomArmor.AC}</p>
+                    <p>Property: ${randomArmor.Property}</p>
+                    <p>Cost: ${randomArmor.Cost}</p>
+                    <p>Weight: ${randomArmor.Weight}</p>
+                    <p>Stealth: ${randomArmor.Stealth}</p>
+                </div>`;
+            } else {
+                var possibleChoices = json.equipmentList[weaponType].weaponList;
+                var randomWeapon = random_item(possibleChoices);
+                var objAppend = `
+                <hr>
+                <div>
+                    <p>${randomWeapon.Name}</p>
+                    <p>Type: ${randomWeapon.Type}</p>
+                    <p>Property: ${randomWeapon.Property}</p>
+                    <p>Stealth: ${randomWeapon.Damage}</p>
+                    <p>Cost: ${randomWeapon.Cost}</p>
+                    <p>Weight: ${randomWeapon.Weight}</p>
+                </div>`;
+            }
+            $('#randomSWweapon').append(objAppend);
+            //* Parte per le mods
+            if (installedMods != "0"){
+                getMods(installedMods, weaponRarity, weaponType, json);
+            }
+        }
+    })
+}
+
+function random_item(items){
+    return items[Math.floor(Math.random()*items.length)];
+}
+
+function getMods(modsNumber, rarity, weaponType, json){
+    var d100arr = [];
+    var startN = 1;
+    while (startN<101){
+        d100arr.push(startN);
+        startN+=1;
+    }
+    var nMods = parseInt(modsNumber);
+    var nAttunemens = 0;
+    var costoMods = 0;
+    if (nMods > 4){
+        var nAttunemens = nMods - 4;
+        nMods = 4;
+    }
+    var arrayPossibleRarities = [];
+    switch(rarity){
+        case "Standard":
+            arrayPossibleRarities = ["Standard"]
+            break;
+        case "Premium":
+            arrayPossibleRarities = ["Standard", "Premium"]
+            break;
+        case "Prototype":
+            arrayPossibleRarities = ["Standard", "Premium", "Prototype"]
+            break;
+        case "Advanced":
+            arrayPossibleRarities = ["Standard", "Premium", "Prototype", "Advanced"]
+            break;
+        case "Legendary":
+            arrayPossibleRarities = ["Standard", "Premium", "Prototype", "Advanced", "Legendary"]
+            break;
+        case "Artifact":
+            arrayPossibleRarities = ["Standard", "Premium", "Prototype", "Advanced", "Legendary", "Artifact"]
+            break;
+        default:
+            ""
+    }
+    var returnMods = [];
+    for (i=0; i<nMods; i++){
+        currentRarity = random_item(arrayPossibleRarities);
+        json.rarity.forEach(el => {
+            if (el.description == currentRarity){
+                var arrayVantaggio = [];
+                for (k=0; k<2; k++){
+                    arrayVantaggio.push(random_item(d100arr))
+                }
+                var possibleMods = el.modList[weaponType];
+                var randomMod = random_item(possibleMods);
+                randomMod["rarity"] = currentRarity;
+                randomMod["removalDC"] = el.installationRemovalDC;
+                var d100 = arrayVantaggio.reduce((a, b) => Math.max(a, b), -Infinity);;
+                costoMods += (d100*el.valueModifier);
+                returnMods.push(randomMod); 
+            }
+        })
+    }
+
+    var returnAttunements = [];
+    for (j=0; j<nAttunemens; j++){
+        currentRarity = random_item(arrayPossibleRarities);
+        json.rarity.forEach(el => {
+            if (el.description == currentRarity){
+                var possibleAtt = el.modList["Augment"];
+                var randomAtt = random_item(possibleAtt);
+                randomAtt["rarity"] = currentRarity;
+                returnAttunements.push(randomAtt);
+            }
+        })
+    }
+    
+    var modDivHeader = `<hr><div id="SWmodsDiv"><h4>Installed mods</h4></div>`;
+    $('#randomSWweapon').append(modDivHeader);
+
+    returnMods.forEach(el => {
+        var singleModDiv = `
+        <div class="">
+            <h5>${el.name}</h5>
+            <p>Rarity: ${el.rarity}</p>
+            <p>Installation / Removal DC: ${el.removalDC}</p>
+            <p>${el.description}</p>
+        </div>`;
+        $('#SWmodsDiv').append(singleModDiv);
+    })
+    
+    returnAttunements.forEach(el => {
+        var singleModDiv = `
+        <div class="">
+            <h5>${el.name}</h5>
+            <p>Rarity: ${el.rarity}</p>
+            <p>${el.description}</p>
+        </div>`;
+        $('#SWmodsDiv').append(singleModDiv);
+    })
+
+    var costoModsAppend = `<h5>Costo chassis: ${costoMods}</h5>`;
+    $('#SWmodsDiv').append(costoModsAppend);
 }

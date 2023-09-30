@@ -21,7 +21,7 @@
 <body>
     <div id="main">
         <!-- Nav Desktop -->
-        <nav id="navDesktop" class="nav flex-column nav-pills p-3" role="tablist" aria-orientation="vertical" style="height: 100vh;">
+        <nav id="navDesktop" class="nav flex-column nav-pills p-3" role="tablist" aria-orientation="vertical" >
             <div style="height: 90vh;">
                 <h3 for="" class="text-white text-center">DM Tools <i class="fa-solid fa-dice-d20"></i></h3>
                 <hr>
@@ -49,7 +49,7 @@
         <div class="tab-content shadow" id="tabContent" style="width: 100%;">
             <!-- Tab Iniziativa -->
             <div class="tab-pane fade show active" id="divIniziativa" role="tabpanel" aria-labelledby="iniziativa-tab">
-                <div id="enemyManager" style="height: 100vh;">
+                <div id="enemyManager" >
                     <div id="headBar">
                         <div style="display: flex;justify-content: space-evenly;">
                             <button id="addEnemy" class="btnAdd btn btn-danger m-3" type="button">
@@ -78,7 +78,7 @@
             </div>
             <!-- Tab Musica -->
             <div class="tab-pane fade" id="divMusica" role="tabpanel" aria-labelledby="music-tab">                          
-                <div id="palyersDiv" style="height: 100vh;">
+                <div id="palyersDiv" >
                     <div id="players" class="p-3">
                         <div class="card musicCard fightCard col-6 p-3 shadow">
                             <div class="card-title">
@@ -109,7 +109,7 @@
             </div>
             <!-- Tab Dadi -->
             <div class="tab-pane fade" id="divDice" role="tabpanel" aria-labelledby="dice-tab">                             
-                <div id="diceContainer" style="height: 100vh;">
+                <div id="diceContainer" >
                     <div class="card diceCard">
                         <div class="d-flex">
                             <div class="col-11 text-center">
@@ -146,13 +146,13 @@
             </div>
             <!-- Tab Note -->
             <div id="divNotes" class="tab-pane fade" role="tabpanel" aria-labelledby="notes-tab">
-                <div id="" class="d-flex justify-content-center" style="height: 100vh;">
+                <div id="" class="d-flex justify-content-center" >
                     <textarea id="notes" class="textareaNote" placeholder="What are you thinking about?"></textarea>
                 </div>
             </div>
             <!-- Tab Random -->
             <div id="divRandom" class="tab-pane fade" role="tabpanel" aria-labelledby="random-tab">
-                <div id="randomCardContainer" style="height: 100vh;">
+                <div id="randomCardContainer" >
                     <!-- Random Names -->
                     <div class="card shadow card-random">
                         <div class="card-header text-center randomCard-header">
@@ -162,12 +162,34 @@
                         <div id="randomNames" class="card-body text-center">
                         </div>
                     </div>
+                    <!-- Random Scifi Jobs -->
                     <div class="card shadow card-random">
                         <div class="card-header text-center randomCard-header">
                             <button type="button" id="randomJobsBtn" class="btn btn-primary">Get 10 Sci-fi jobs</button>
                             <button type="button" id="randomJobsClear" class="btn btn-danger">Clear</button>
                         </div>
                         <div id="randomJobs" class="card-body text-center">
+                        </div>
+                    </div>
+                    <!-- Random SW Weapons -->
+                    <div class="card shadow card-random">
+                        <div class="card-header text-center randomCard-header">
+                            <button type="button" id="randomSWweaponBtn" class="btn btn-primary">Get Random SW Weapon</button>
+                            <button type="button" id="randomSWweaponClear" class="btn btn-danger">Clear</button>
+                        </div>
+                        <div id="" class="card-body">
+                            <select class="col-12" id="SWweaponType">
+                                <option value="" disabled selected>Select weapon type</option>
+                            </select>
+                            <select class="col-12 mt-2" id="SWweaponRarity">
+                                <option value="" disabled selected>Select weapon rarity</option>
+                            </select>
+                            <select class="col-12 mt-2" id="SWweaponMods">
+                                <option value="" disabled selected>Select installed mods</option>
+                            </select>
+                            <div id="randomSWweapon" class="text-center mt-1">
+
+                            </div>
                         </div>
                     </div>
                 </div>
