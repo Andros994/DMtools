@@ -472,6 +472,6 @@ function getMods(modsNumber, rarity, weaponType, json){
         $('#SWmodsDiv').append(singleModDiv);
     })
 
-    var costoModsAppend = `<h5>Costo chassis: ${costoMods}</h5>`;
+    var costoModsAppend = `<h5>Chassis total cost: ${costoMods}</h5>`;
     $('#SWmodsDiv').append(costoModsAppend);
 }
