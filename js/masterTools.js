@@ -350,6 +350,7 @@ function popolaSelectSWweapons(json){
                     <p>Weight: ${randomArmor.Weight}</p>
                     <p>Stealth: ${randomArmor.Stealth}</p>
                 </div>`;
+            // Weapon
             } else {
                 var possibleChoices = json.equipmentList[weaponType].weaponList;
                 var randomWeapon = random_item(possibleChoices);
@@ -359,7 +360,7 @@ function popolaSelectSWweapons(json){
                     <p>${randomWeapon.Name}</p>
                     <p>Type: ${randomWeapon.Type}</p>
                     <p>Property: ${randomWeapon.Property}</p>
-                    <p>Stealth: ${randomWeapon.Damage}</p>
+                    <p>Damage: ${randomWeapon.Damage}</p>
                     <p>Cost: ${randomWeapon.Cost}</p>
                     <p>Weight: ${randomWeapon.Weight}</p>
                 </div>`;
