@@ -169,6 +169,10 @@ hr{
     display: flex;
 }
 
+.randomRow{
+    display: flex;
+}
+
 .randomCard-header{
     display: flex;
     justify-content: space-between;
@@ -205,6 +209,9 @@ hr{
         height: fit-content;
     }
     #randomCardContainer{
+        display: block;
+    }
+    .randomRow{
         display: block;
     }
   }

@@ -20,6 +20,11 @@ $(document).ready(function(){
         popolaSelectSWweapons(swWeapons);
     });
 
+    // config per SW items
+    $.getJSON("/DMtools/config/items.json", function(data) {
+        itemsConfig = data;
+    })
+
     $('#modalAdd').hide();
 
     $('#selectCombattimento, #selectEsplorazione').on('change', function(){
@@ -172,6 +177,35 @@ $(document).ready(function(){
 
     $(document).on('click', '#randomSWweaponClear', function(){
         $('#randomSWweapon').empty();
+    })
+
+    $(document).on('click', '#randomSwitemsBtn', function(){
+        $('#randomSWitems').empty();
+        var arrayRandomItems = [];
+        for (i=0; i<10; i++){
+            var randomItem = random_item(itemsConfig.itemList);
+            arrayRandomItems.push(randomItem);
+        }
+        console.log(arrayRandomItems);
+        arrayRandomItems.forEach(el => {
+            if (!el.Description){
+                el.Description = "";
+            }
+            var objAppend = `
+            <div>
+                <h4>${el.Name}</h4>
+                <p>Category: ${el.Category}</p>
+                <p>${el.Description}</p>
+                <p>Cost: ${el.Cost}</p>
+                <p>Weight: ${el.Weight}</p>
+            </div>
+            <hr>`;
+            $('#randomSWitems').append(objAppend);
+        })
+    })
+
+    $(document).on("click", "#randomSWitemsClear", function(){
+        $('#randomSWitems').empty();
     })
 })
 

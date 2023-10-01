@@ -44,7 +44,7 @@
               <a class="nav-item nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#divNotes" href="#divNotes" role="tab" aria-controls="divNotes" aria-selected="false"><i class="fa-solid fa-book"></i> Notes</a>
               <a class="nav-item nav-link" id="random-tab" data-bs-toggle="tab" data-bs-target="#divRandom" href="#divRandom" role="tab" aria-controls="divRandom" aria-selected="false"><i class="fa-solid fa-shuffle"></i> Random items</a>
             </div>
-          </nav>
+        </nav>
           <!-- Tab Content -->
         <div class="tab-content shadow" id="tabContent" style="width: 100%;">
             <!-- Tab Iniziativa -->
@@ -78,7 +78,7 @@
             </div>
             <!-- Tab Musica -->
             <div class="tab-pane fade" id="divMusica" role="tabpanel" aria-labelledby="music-tab">                          
-                <div id="palyersDiv" >
+                <div id="palyersDiv" class="pb-5">
                     <div id="players" class="p-3">
                         <div class="card musicCard fightCard col-6 p-3 shadow">
                             <div class="card-title">
@@ -109,7 +109,7 @@
             </div>
             <!-- Tab Dadi -->
             <div class="tab-pane fade" id="divDice" role="tabpanel" aria-labelledby="dice-tab">                             
-                <div id="diceContainer" >
+                <div id="diceContainer" class="pb-5">
                     <div class="card diceCard">
                         <div class="d-flex">
                             <div class="col-11 text-center">
@@ -146,49 +146,62 @@
             </div>
             <!-- Tab Note -->
             <div id="divNotes" class="tab-pane fade" role="tabpanel" aria-labelledby="notes-tab">
-                <div id="" class="d-flex justify-content-center" >
+                <div id="" class="d-flex justify-content-center pb-5">
                     <textarea id="notes" class="textareaNote" placeholder="What are you thinking about?"></textarea>
                 </div>
             </div>
             <!-- Tab Random -->
             <div id="divRandom" class="tab-pane fade" role="tabpanel" aria-labelledby="random-tab">
-                <div id="randomCardContainer" >
-                    <!-- Random Names -->
-                    <div class="card shadow card-random">
-                        <div class="card-header text-center randomCard-header">
-                            <button type="button" id="randomNamesBtn" class="btn btn-primary">Get 10 Names</button>
-                            <button type="button" id="randomNamesClear" class="btn btn-danger">Clear</button>
+                <div id="randomCardContainer" class="row pb-5">
+                    <div class="randomRow">
+                        <!-- Random Names -->
+                        <div class="card shadow card-random">
+                            <div class="card-header text-center randomCard-header">
+                                <button type="button" id="randomNamesBtn" class="btn btn-primary">Get 10 Names</button>
+                                <button type="button" id="randomNamesClear" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div id="randomNames" class="card-body text-center">
+                            </div>
                         </div>
-                        <div id="randomNames" class="card-body text-center">
+                        <!-- Random Scifi Jobs -->
+                        <div class="card shadow card-random">
+                            <div class="card-header text-center randomCard-header">
+                                <button type="button" id="randomJobsBtn" class="btn btn-primary">Get 10 Sci-fi jobs</button>
+                                <button type="button" id="randomJobsClear" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div id="randomJobs" class="card-body text-center">
+                            </div>
+                        </div>
+                        <!-- Random SW Weapons -->
+                        <div class="card shadow card-random">
+                            <div class="card-header text-center randomCard-header">
+                                <button type="button" id="randomSWweaponBtn" class="btn btn-primary">Get Random SW Weapon</button>
+                                <button type="button" id="randomSWweaponClear" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div id="" class="card-body">
+                                <select class="col-12" id="SWweaponType">
+                                    <option value="" disabled selected>Select weapon type</option>
+                                </select>
+                                <select class="col-12 mt-2" id="SWweaponRarity">
+                                    <option value="" disabled selected>Select weapon rarity</option>
+                                </select>
+                                <select class="col-12 mt-2" id="SWweaponMods">
+                                    <option value="" disabled selected>Select installed mods</option>
+                                </select>
+                                <div id="randomSWweapon" class="text-center mt-1">
+    
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Random Scifi Jobs -->
-                    <div class="card shadow card-random">
-                        <div class="card-header text-center randomCard-header">
-                            <button type="button" id="randomJobsBtn" class="btn btn-primary">Get 10 Sci-fi jobs</button>
-                            <button type="button" id="randomJobsClear" class="btn btn-danger">Clear</button>
-                        </div>
-                        <div id="randomJobs" class="card-body text-center">
-                        </div>
-                    </div>
-                    <!-- Random SW Weapons -->
-                    <div class="card shadow card-random">
-                        <div class="card-header text-center randomCard-header">
-                            <button type="button" id="randomSWweaponBtn" class="btn btn-primary">Get Random SW Weapon</button>
-                            <button type="button" id="randomSWweaponClear" class="btn btn-danger">Clear</button>
-                        </div>
-                        <div id="" class="card-body">
-                            <select class="col-12" id="SWweaponType">
-                                <option value="" disabled selected>Select weapon type</option>
-                            </select>
-                            <select class="col-12 mt-2" id="SWweaponRarity">
-                                <option value="" disabled selected>Select weapon rarity</option>
-                            </select>
-                            <select class="col-12 mt-2" id="SWweaponMods">
-                                <option value="" disabled selected>Select installed mods</option>
-                            </select>
-                            <div id="randomSWweapon" class="text-center mt-1">
-
+                    <div class="randomRow">
+                        <!-- Random SW items -->
+                        <div class="card shadow card-random">
+                            <div class="card-header text-center randomCard-header">
+                                <button type="button" id="randomSwitemsBtn" class="btn btn-primary">Get 10 SW items</button>
+                                <button type="button" id="randomSWitemsClear" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div id="randomSWitems" class="card-body text-center">
                             </div>
                         </div>
                     </div>
