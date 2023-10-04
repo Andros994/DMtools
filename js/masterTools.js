@@ -193,7 +193,7 @@ $(document).ready(function(){
             }
             var objAppend = `
             <div>
-                <h4>${el.Name}</h4>
+                <h4 class="redText"><b>${el.Name}</b></h4>
                 <p>Category: ${el.Category}</p>
                 <p>${el.Description}</p>
                 <p>Cost: ${el.Cost}</p>
@@ -273,6 +273,17 @@ function calcolaDadi(input){
     var thirdCol = "<td></td>";
     arrayDadi.forEach(el => {
         var arrayResult = [];
+        var symbol = "";
+        var modifier = 0;
+        if (el.includes("+")){
+            modifier = parseInt(el.split('+')[1]);
+            el = el.split("+")[0]
+            symbol = "+";
+        } else if (el.includes("-")) {
+            modifier = parseInt(el.split('-')[1]);
+            el = el.split("-")[0]
+            symbol = "-";
+        }
         var numeroDadi = el.split('d')[0];
         var tipoDado = el.split('d')[1];
         for (i=0; i<parseInt(numeroDadi); i++){
@@ -280,6 +291,11 @@ function calcolaDadi(input){
             arrayResult.push(risultatoTiro);
         }
         var somma = sum(arrayResult);
+        if (symbol == "+"){
+            somma+=modifier;
+        } else if (symbol == "-"){
+            somma-=modifier;
+        }
         firstCol = `<td>${el}</td>`;
         if ($('#mostraRisultati').is(':checked')){
             secondCol = `<td>Single results: ${arrayResult}</td>`;
@@ -482,13 +498,13 @@ function getMods(modsNumber, rarity, weaponType, json){
         })
     }
     
-    var modDivHeader = `<hr><div id="SWmodsDiv"><h4>Installed mods</h4></div>`;
+    var modDivHeader = `<hr><div id="SWmodsDiv"><h3>Installed mods</h3></div>`;
     $('#randomSWweapon').append(modDivHeader);
 
     returnMods.forEach(el => {
         var singleModDiv = `
-        <div class="">
-            <h5>${el.name}</h5>
+        <div>
+            <h4 class="redText"><b>${el.name}</b></h4>
             <p>Rarity: ${el.rarity}</p>
             <p>Installation / Removal DC: ${el.removalDC}</p>
             <p>${el.description}</p>

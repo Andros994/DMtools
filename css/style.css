@@ -177,6 +177,9 @@ hr{
     display: flex;
     justify-content: space-between;
 }
+.redText{
+    color: #fa4b4b;
+}
 
 /* Versione mobile */
 @media only screen and (max-width: 768px) {
