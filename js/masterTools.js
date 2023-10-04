@@ -407,7 +407,7 @@ function popolaSelectSWweapons(json){
                 var objAppend = `
                 <hr>
                 <div>
-                    <p>${randomWeapon.Name}</p>
+                    <h4 class="redText"><b>${randomWeapon.Name}</b></h4>
                     <p>Type: ${randomWeapon.Type}</p>
                     <p>Property: ${randomWeapon.Property}</p>
                     <p>Damage: ${randomWeapon.Damage}</p>
